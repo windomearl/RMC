@@ -6,5 +6,5 @@
 - name: Install Fail2ban
   apt: name=fail2ban state=present
 
-- name: Change prompt for user
-  lineinfile: dest=/etc/bash.bashrc regexp=^PS1= line=PS1=\[$(tput bold)\]\[\033[48;5;28m\]\u@\h\[$(tput sgr0)\]\[$(tput sgr0)\]\[\033[48;5;-1m\]:\[$(tput bold)\]\[$(tput sgr0)\]\[\033[38;5;14m\][\w]\[$(tput sgr0)\]
+- name: Change default prompt for user
+  lineinfile: dest=/etc/bash.bashrc regexp=^PS1= line='PS1=\"\[$(tput bold)\]\[\\033[48;5;28m\]\u@\h\[$(tput sgr0)\]\[$(tput sgr0)\]\[\\033[48;5;-1m\]:\[$(tput bold)\]\[$(tput sgr0)\]\[\\033[38;5;14m\][\w]\[$(tput sgr0)\]\"'
