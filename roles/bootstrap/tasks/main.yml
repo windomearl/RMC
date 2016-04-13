@@ -1,0 +1,7 @@
+#Thise role contains basic bootsrap
+
+- name: Set hostname
+  hostname: name=malina
+
+- name: Install Fail2ban
+  apt: name=fail2ban state=present
