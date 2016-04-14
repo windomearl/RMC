@@ -19,3 +19,6 @@
 
 - name: Turn off password login
   lineinfile: dest=/etc/ssh/sshd_config regexp=^PasswordAuthentication line='PasswordAuthentication no'
+
+- name: Disable root login
+  lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line='PermitRootLogin no'
