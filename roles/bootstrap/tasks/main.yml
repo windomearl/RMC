@@ -1,0 +1,33 @@
+#Thise role contains basic bootsrap
+
+- name: Set hostname
+  hostname: name=malina
+
+- name: Install Fail2ban
+  apt: name=fail2ban state=present
+
+- name: Change default prompt for user
+  lineinfile: dest=/etc/bash.bashrc regexp=^PS1= line='PS1=\"\[$(tput bold)\]\[\\033[48;5;28m\]\u@\h\[$(tput sgr0)\]\[$(tput sgr0)\]\[\\033[48;5;-1m\]:\[$(tput bold)\]\[$(tput sgr0)\]\[\\033[38;5;14m\][\w]\[$(tput sgr0)\]\"'
+
+- name: Change prompt for user
+  lineinfile: dest=/home/{{ user }}/.bashrc regexp=^PS1= line='PS1=\"\[$(tput bold)\]\[\\033[48;5;28m\]\u@\h\[$(tput sgr0)\]\[$(tput sgr0)\]\[\\033[48;5;-1m\]:\[$(tput bold)\]\[$(tput sgr0)\]\[\\033[38;5;14m\][\w]\[$(tput sgr0)\]\"'
+
+- name: Change prompt for root
+  lineinfile: dest=/root/.bashrc regexp=^PS1= line='PS1=\"\[$(tput bold)\]\[\033[48;5;160m\]\h@\u\[$(tput sgr0)\]\[\033[48;5;-1m\]:\[$(tput sgr0)\]\[\033[38;5;14m\][\w]\[$(tput sgr0)\]\"'
+
+- user: name=pi state=absent remove=yes
+
+- name: Turn off password login
+  lineinfile: dest=/etc/ssh/sshd_config regexp=^PasswordAuthentication line='PasswordAuthentication no'
+
+- name: Disable root login
+  lineinfile: dest=/etc/ssh/sshd_config regexp=^PermitRootLogin line='PermitRootLogin no'
+
+- name: Set current on USB
+  lineinfile: dest=/etc/ssh/sshd_config line='max_usb_current=1'
+
+- name: Set safe mode gpio
+  lineinfile: dest=/etc/ssh/sshd_config line='safe_mode_gpio=4'
+
+- name: Mount USB drive
+  mount: name=/mnt/media_disk src='UUID={{uuid}}' fstype=ntfs opts=defaults state=mounted
