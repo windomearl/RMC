@@ -28,6 +28,9 @@
 
 - name: Set safe mode gpio
   lineinfile: dest=/etc/ssh/sshd_config line='safe_mode_gpio=4'
+  
+- name: Create mount point
+  file: path=/mnt/media_disk state=directory mode=0755
 
 - name: Mount USB drive
-  mount: name=/home src='UUID={{uuid}}' fstype=ntfs opts=defaults state=present
+  mount: name=/mnt/media_disk src='UUID={{uuid}}' fstype=ntfs opts=defaults state=present
