@@ -13,4 +13,4 @@
   lineinfile: dest=/home/{{ user }}/.bashrc regexp=^PS1= line='PS1=\"\[$(tput bold)\]\[\\033[48;5;28m\]\u@\h\[$(tput sgr0)\]\[$(tput sgr0)\]\[\\033[48;5;-1m\]:\[$(tput bold)\]\[$(tput sgr0)\]\[\\033[38;5;14m\][\w]\[$(tput sgr0)\]\"'
 
 - name: Change prompt for root
-  lineinfile: dest=/root/.bashrc regexp=^PS1= line=export 'PS1=\"\[$(tput bold)\]\[\033[48;5;160m\]\h@\u\[$(tput sgr0)\]\[\033[48;5;-1m\]:\[$(tput sgr0)\]\[\033[38;5;14m\][\w]\[$(tput sgr0)\]\"'
+  lineinfile: dest=/root/.bashrc regexp=^PS1= line='PS1=\"\[$(tput bold)\]\[\033[48;5;160m\]\h@\u\[$(tput sgr0)\]\[\033[48;5;-1m\]:\[$(tput sgr0)\]\[\033[38;5;14m\][\w]\[$(tput sgr0)\]\"'
